@@ -9,7 +9,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.roadrhythm.ui.theme.RoadRhythmTheme
 import com.example.roadrhythm.ui.theme.Typography
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -49,7 +51,7 @@ fun LogInActivity(authViewModel: AuthViewModel) {
                             modifier = Modifier
                                 .width(300.dp)
                                 .height(50.dp),
-                            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.surface),
+                            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondaryVariant),
                             shape = MaterialTheme.shapes.large
                         ) {
                             Row(
@@ -72,4 +74,14 @@ fun LogInActivity(authViewModel: AuthViewModel) {
             }
         }
     )
+}
+
+@Preview
+@Composable
+fun LogInActivityPreview() {
+    val authViewModel = AuthViewModel()
+
+    RoadRhythmTheme {
+        LogInActivity(authViewModel)
+    }
 }

@@ -9,54 +9,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.roadrhythm.R
 
-val AvenirNext = FontFamily(
-    Font(R.font.avenir_next_bold, FontWeight.Bold),
-    Font(R.font.avenir_next_italic, FontWeight.Medium),
-    Font(R.font.avenir_next_regular, FontWeight.SemiBold)
-)
+val AvenirNextBold = FontFamily(Font(R.font.avenir_next_bold))
+val AvenirNextRegular = FontFamily(Font(R.font.avenir_next_regular))
 
-// Set of Material typography styles to start with
 val Typography = Typography(
     h1 = TextStyle(
-        fontFamily = AvenirNext,
-        fontWeight = FontWeight.Bold,
-        fontSize = 35.sp,
-        color = Color.White
+        color = Color.White,
+        fontFamily = AvenirNextBold,
+        fontSize = 36.sp
     ),
     h2 = TextStyle(
-        fontFamily = AvenirNext,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp,
-        color = Color.White
+        color = Color.White,
+        fontFamily = AvenirNextBold,
+        fontSize = 24.sp
     ),
     subtitle1 = TextStyle(
-        fontFamily = AvenirNext,
+        color = Color.White,
+        fontFamily = AvenirNextRegular,
         fontWeight = FontWeight.Thin,
-        fontSize = 20.sp,
-        color = Color.White
+        fontSize = 20.sp
     ),
     body1 = TextStyle(
-        fontFamily = AvenirNext,
-        fontWeight = FontWeight.Bold,
-        fontSize = 16.sp,
-        color = Color.White
-    ),
-
-    /* Other default text styles to override
-    body1 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+        color = Color.White,
+        fontFamily = AvenirNextBold,
         fontSize = 16.sp
-    ),
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
-        fontSize = 14.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
     )
-    */
 )

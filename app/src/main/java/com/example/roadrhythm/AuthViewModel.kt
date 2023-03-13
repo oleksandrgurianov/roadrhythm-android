@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
 class AuthViewModel: ViewModel() {
-    val isLoggedIn = mutableStateOf(true)
+    val isLoggedIn = mutableStateOf(false)
 
     fun login() {
         isLoggedIn.value = true
