@@ -1,6 +1,8 @@
 package com.example.roadrhythm
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.*
@@ -17,17 +19,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeActivity(authViewModel: AuthViewModel, gestureControl: GestureControl) {
-    val numberOfTaps = remember { mutableStateOf(0) }
-    val lastTapTime = remember { mutableStateOf(0L) }
-    val doubleTapDelay = 200L
-    val tripleTapDelay = 400L
     val expanded = remember { mutableStateOf(false) }
 
     Box(
@@ -38,22 +38,23 @@ fun HomeActivity(authViewModel: AuthViewModel, gestureControl: GestureControl) {
             .pointerInput(Unit) {
                 detectTapGestures(
                     onTap = {
-                        val now = System.currentTimeMillis()
-                        if (numberOfTaps.value == 0 || now - lastTapTime.value > tripleTapDelay) {
-                            numberOfTaps.value = 1
-                            println("PLAY/PAUSE")
-                        } else if (numberOfTaps.value == 1 && now - lastTapTime.value < doubleTapDelay) {
-                            numberOfTaps.value = 2
-                            println("NEXT")
-                        } else if (numberOfTaps.value == 2 && now - lastTapTime.value < doubleTapDelay) {
-                            numberOfTaps.value = 3
-                            println("PREVIOUS")
-                        } else {
-                            numberOfTaps.value = 1
-                            println("PLAY/PAUSE")
-                        }
-                        lastTapTime.value = now
+
+                        // TODO: Implement playPause() function
+
+                    },
+                    onDoubleTap = {
+
+                        // TODO: Implement playNext() function
+
+                    },
+
+                    // TODO: Replace with triple tap recognition function
+                    onLongPress = {
+
+                        // TODO: Implement playPrevious() function
+
                     }
+
                 )
             }
             .pointerInput(Unit) {
@@ -69,12 +70,9 @@ fun HomeActivity(authViewModel: AuthViewModel, gestureControl: GestureControl) {
                 .align(Alignment.TopEnd)
                 .padding(top = 32.dp)
         ) {
-            Box(
-                Modifier
-                    .padding(10.dp)
-            ) {
+            Box(Modifier.padding(10.dp)) {
                 IconButton(
-                    onClick = { expanded.value = !expanded.value },
+                    onClick = { },
                     modifier = Modifier
                         .background(
                             color = MaterialTheme.colors.secondary,
@@ -85,7 +83,16 @@ fun HomeActivity(authViewModel: AuthViewModel, gestureControl: GestureControl) {
                     Icon(
                         imageVector = Icons.Rounded.Settings,
                         contentDescription = "Settings Dropdown",
-                        modifier = Modifier.size(30.dp),
+                        modifier = Modifier
+                            .clip(MaterialTheme.shapes.large)
+                            .combinedClickable(
+                                onLongClick = {
+                                    gestureControl.vibrate()
+                                    expanded.value = !expanded.value
+                                }
+                            ) { }
+                            .padding(10.dp)
+                            .size(30.dp),
                         tint = MaterialTheme.colors.primaryVariant
                     )
                 }

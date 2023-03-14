@@ -44,7 +44,7 @@ fun LogInActivity(authViewModel: AuthViewModel) {
                     Spacer(modifier = Modifier.height(75.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center // added horizontal arrangement to center the button
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         Button(
                             onClick = { authViewModel.login() },
